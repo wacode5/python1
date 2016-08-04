@@ -12,10 +12,11 @@ wikipediaの特定URLからN次までのリンクを全て取得し、それぞ�
 
 * `setup.py` ... インストール、テストなどの要件を定義するファイル。どのファイルを配布物に含めたいか、より詳細に指定する場合は`MANIFEST.in`という独自DSLで記述することになるが、はじめは必要ない。
 * `requirements.txt` ... 依存パッケージを定義するファイル。
-* `docs` ... `sphinx-quickstart`で生成したSphinxドキュメントのテンプレート
+* `docs/` ... `sphinx-quickstart`で生成したSphinxドキュメントのテンプレート
 * `.gitignore` ... はじめは[github推奨のもの](https://github.com/github/gitignore/blob/master/Python.gitignore)を使っておく。pythonに限らず有用
 * `LICENSE.txt` ... ライセンスの全文。今回は[MITライセンス](http://choosealicense.com/licenses/mit/)
 * `tests/` テストを置く。
+* `examples/` ... 大規模なフレームワークの場合、使用例を記述しておくと使いやすくなる。
 * `wiki_to_vec/` ... ソースコードのディレクトリ。
 
 ## TIPS
