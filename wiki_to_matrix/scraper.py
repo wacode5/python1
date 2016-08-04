@@ -4,7 +4,9 @@
 """
 from bs4 import BeautifulSoup
 import requests
+import os
 import logging
+from requests import HTTPError
 logger = logging.getLogger(__name__)
 from wiki_to_matrix.utils import wiki_pattern, html_information
 
@@ -25,23 +27,22 @@ def crowl(url, path):
                 これをうまく使って内部リンクのみを抽出する。
     """
     path_to_text = _download_html(url, path)
-
+    pass
 
 
 # 関数名を`_`(アンダーバー)から始めるとプライベートであることを明示できる。
 def _download_html(url, path_to_save):
     """htmlを特定ディレクトリ以下に保存し、そのファイル名を返す。
 
-    例えば
-    urlが"http://thisis/example.com"
-    path_to_saveが"/path/to/save"の場合
-    ファイル名は"/path/to/save/example.html"になる。
-
     Args:
         url (str): 取得したいurl
         path_to_save (str): 保存先ディレクトリ
     Returns:
         str: 保存先ファイル名のパス
+
+    Examples:
+    >>> _download_html('https://www.google.co.jp', '/tmp')
+    '/tmp/www.google.co.jp.html'
     """
     pass
 
@@ -53,7 +54,4 @@ def _download_html(url, path_to_save):
 # アンチパターンなのでやめたほうが良い
 if __name__ == '__main__':
     import doctest
-
-    # doctestを実行する。
-    # 今回は`Examples:`を記述した関数がないので空テスト
     doctest.testmod()
