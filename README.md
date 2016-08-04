@@ -19,7 +19,7 @@ wikipediaの特定URLからN次までのリンクを全て取得し、それぞ�
 * `LICENSE.txt` ... ライセンスの全文。今回は[MITライセンス](http://choosealicense.com/licenses/mit/)
 * `tests/` テストを置く。
 * `examples/` ... 大規模なフレームワークの場合、使用例を記述しておくと使いやすくなる。
-* `wiki_to_vec/` ... ソースコードのディレクトリ。
+* `wiki_to_matrix/` ... ソースコードのディレクトリ。
 
 ## TIPS
 
