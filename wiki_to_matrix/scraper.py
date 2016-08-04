@@ -1,6 +1,5 @@
 #!usr/bin/env python
 # -*- coding: utf-8 -*-
-
 """wikiからのhtmlの取得と整形を行う関数群
 """
 from bs4 import BeautifulSoup
@@ -11,38 +10,26 @@ logger = logging.getLogger(__name__)
 from wiki_to_matrix.utils import wiki_pattern, html_information
 
 
-def crowl(url, path, lang="en"):
-    """特定のurlからhtmlを取得する
+def crowl(url, path):
+    """特定のurlからhtmlの情報を取得する
+
+    BeautifulSoupを用いてパースし、bodyの内容だけを返す。
 
     Args:
         url (str): 取得したいhtmlのurl
         path (str): htmlを一時的に保存するディレクトリ
-        lang (str): どの言語のwikipediaページをダウンロードするか
     Returns:
         html_information (namedtuple):
             str: htmlのbody contents
             list (str): html中に含まれるwikipidiaページへのurlのリスト
     """
     _download_html(url, path)
-    body = _extract_body(path)
-    pass
+    bsObj = BeautifulSoup(html, "lxml")
+    body_content = bsObj.find('div', {"id": "bodyContent"})
+
 
 
 # 関数名を`_`(アンダーバー)から始めるとプライベートであることを明示できる。
-def _extract_body(html):
-    """htmlから興味のある内容のみを抽出する
-    body以外の情報は解析に用いるには冗長なため、ここで削る
-
-    Args:
-        html (str): htmlファイルへのパス
-    Returns:
-        str: body contents
-    """
-    bsObj = BeautifulSoup(html, "lxml")
-    body_content = bsObj.find('div', {"id": "bodyContent"})
-    return body_content.get_text().replace(' ', '').replace("\n", '').replace("　", '')
-
-
 def _download_html(url, path_to_save):
     """htmlを特定ディレクトリに保存する。
 
