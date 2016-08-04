@@ -4,7 +4,6 @@
 """
 from bs4 import BeautifulSoup
 import requests
-import re
 import logging
 logger = logging.getLogger(__name__)
 from wiki_to_matrix.utils import wiki_pattern, html_information
@@ -21,22 +20,28 @@ def crowl(url, path):
     Returns:
         html_information (namedtuple):
             str: htmlのbody contents
-            list (str): html中に含まれるwikipidiaページへのurlのリスト
+            list (str): html中に含まれるwikipidiaページへのurlのリスト。
+                wiki内の内部リンクの場合、`wiki_pattern`から開始するので、
+                これをうまく使って内部リンクのみを抽出する。
     """
-    _download_html(url, path)
-    bsObj = BeautifulSoup(html, "lxml")
-    body_content = bsObj.find('div', {"id": "bodyContent"})
+    path_to_text = _download_html(url, path)
 
 
 
 # 関数名を`_`(アンダーバー)から始めるとプライベートであることを明示できる。
 def _download_html(url, path_to_save):
-    """htmlを特定ディレクトリに保存する。
+    """htmlを特定ディレクトリ以下に保存し、そのファイル名を返す。
 
+    例えば
+    urlが"http://thisis/example.com"
+    path_to_saveが"/path/to/save"の場合
+    ファイル名は"/path/to/save/example.html"になる。
 
     Args:
         url (str): 取得したいurl
         path_to_save (str): 保存先ディレクトリ
+    Returns:
+        str: 保存先ファイル名のパス
     """
     pass
 
