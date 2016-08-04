@@ -8,6 +8,8 @@ wikipediaの特定URLからN次までのリンクを全て取得し、それぞ�
 
 すでに雛形は作成してあるので、関数の中身を記述して動作するようにしましょう。
 
+気が向いた方はプルリクエストを送ったり送らなかったりしてください。
+
 ## ファイルの説明
 
 * `setup.py` ... インストール、テストなどの要件を定義するファイル。どのファイルを配布物に含めたいか、より詳細に指定する場合は`MANIFEST.in`という独自DSLで記述することになるが、はじめは必要ない。
@@ -37,6 +39,8 @@ TDDのためのテストは`doctest`の方が多くの点で優れています�
 
 * [wikiページ間のリンクの有無を表すデータ](https://s3-ap-northeast-1.amazonaws.com/wacode5/graph_en.csv.gz)
 * [それぞれの文書をDoc2Vecで行列形式に変換したデータ](https://s3-ap-northeast-1.amazonaws.com/wacode5/result_vector.csv.gz)
+
+その際に用いたプログラムのソースコードは[こちら](https://github.com/joemphilips/doc2vec_wikipedia)にありますがまだ整理していないので参考にしすぎないでください。
 
 ## Advanced
 
