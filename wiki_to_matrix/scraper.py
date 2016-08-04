@@ -4,7 +4,9 @@
 """
 from bs4 import BeautifulSoup
 import requests
+import os
 import logging
+from requests import HTTPError
 logger = logging.getLogger(__name__)
 from wiki_to_matrix.utils import wiki_pattern, html_information
 
@@ -25,7 +27,16 @@ def crowl(url, path):
                 これをうまく使って内部リンクのみを抽出する。
     """
     path_to_text = _download_html(url, path)
+    with open(path_to_text) as htmlfh:
+        bsObj = BeautifulSoup(htmlfh, "lxml")
+    body_content = bsObj.find('div', {"id": "bodyContent"})
 
+    # 例示のため内包表記を使用したが、ネストするくらいなら
+    # 使わなくて良いかもしれない。
+    links = [ "https://en.wikipedia.org" + l.attrs["href"]
+             for l in body_content.findAll("a", href=wiki_pattern)
+             if 'href' in l.attrs]
+    return html_information(body_content.text, links)
 
 
 # 関数名を`_`(アンダーバー)から始めるとプライベートであることを明示できる。
@@ -42,8 +53,24 @@ def _download_html(url, path_to_save):
         path_to_save (str): 保存先ディレクトリ
     Returns:
         str: 保存先ファイル名のパス
+
+    Examples:
+    >>> _download_html('https://www.google.co.jp', '/tmp')
+    '/tmp/www.google.co.jp.html'
     """
-    pass
+    result = requests.get(url)
+
+     # assert よりも明示的にraiseしたほうがわかりやすい。
+    if not result.status_code == 200:
+        logger.critical("status code for {} was {} ".format(url, result.status_code))
+        raise HTTPError
+    file_to_save = os.path.join(path_to_save,
+                                url.split("/")[-1]) + ".html"
+
+    with open(file_to_save, "w") as fh:
+        fh.write(result.text)
+
+    return file_to_save
 
 
 # 以下のように書くことで、
@@ -53,7 +80,4 @@ def _download_html(url, path_to_save):
 # アンチパターンなのでやめたほうが良い
 if __name__ == '__main__':
     import doctest
-
-    # doctestを実行する。
-    # 今回は`Examples:`を記述した関数がないので空テスト
     doctest.testmod()
