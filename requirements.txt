@@ -1,0 +1,8 @@
+gensim
+csvkit
+beautifulsoup4
+lxml
+Sphinx
+ipython
+doctest2
+unittest2
