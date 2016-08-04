@@ -23,6 +23,7 @@ wikipediaの特定URLからN次までのリンクを全て取得し、それぞ�
 
 * `https://github.com/kennethreitz/samplemod` にパッケージの雛形が置いてあります。
 * `ipython`中で`object??`を実行すると、その中身を見ることができます。`requests`や`BeautifulSoup`の使用方法がわからない時はこれで参照しましょう。
+* このリポジトリの`answer`ブランチに解答例があります。
 
 ### テスト
 
