@@ -22,7 +22,7 @@ def crowl(url, path):
     Returns:
         html_information (namedtuple):
             str: htmlのbody contents
-            list (str): html中に含まれるwikipidiaページへのurlのリスト。
+            list (str): htmlのbody中に含まれるwikipidiaページへのurlのリスト。
                 wiki内の内部リンクの場合、`wiki_pattern`から開始するので、
                 これをうまく使って内部リンクのみを抽出する。
     """
