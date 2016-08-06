@@ -42,7 +42,7 @@ setup(
 
     # `setup.py test`の実行に必要なパッケージ
     tests_require=["doctest2"],
-    test_suite=["tests"]
+    test_suite="tests"
 
     # サンプルデータを含める場合、ここに書く。
     # package_data={
