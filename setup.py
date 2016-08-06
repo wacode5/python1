@@ -41,7 +41,7 @@ setup(
     dependency_links=["git+ssh://git@github.com/username/hoge-packge.git@v0.1#egg=hoge"],
 
     # `setup.py test`の実行に必要なパッケージ
-    tests_require=["doctest2"]
+    tests_require=["doctest2"],
     test_suite=["tests"]
 
     # サンプルデータを含める場合、ここに書く。
